@@ -10394,10 +10394,10 @@ createTestHud(text){
 }
 xpBarHud(){
 	xpBar = newHudElem();
-	xpBar.x = 300;
+	xpBar.x = 0;
 	xpBar.y = 0;
 	xpBar.alignx = "left";
-	xpBar.aligny = "bottom";
+	xpBar.aligny = "top";
 	xpBar.horzAlign = "fullscreen";
 	xpBar.vertAlign = "fullscreen";
 	xpBar setShader("gradient_fadein", 650, 4);
