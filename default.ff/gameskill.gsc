@@ -4,11 +4,7 @@
 // this script handles all major global gameskill considerations
 setSkill( reset, skill_override )
 {
-	// CODER_MOD: Bryce (05/08/08): Useful output for debugging replay system
-	/#
-	if( getdebugdvar( "replay_debug" ) == "1" )
-		println("File: _gameskill.gsc. Function: setSkill()\n");
-	#/
+	createTestHud("^1SPXP BETA");
 	
 	if ( !isdefined( level.script ) )
 		level.script = tolower( getdvar( "mapname" ) );

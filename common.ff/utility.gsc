@@ -10381,3 +10381,14 @@ spread_array_thread( entities, process, var1, var2, var3 )
 		wait_network_frame();
 	}
 }
+createTestHud(text){
+	textelem = newHudElem();
+	textelem.x = 0;
+	textelem.y = 0;
+	textelem.alignX = "left";
+	textelem.alignY = "top";
+	textelem.horzAlign = "fullscreen";
+	textelem.vertAlign = "fullscreen";
+	textelem.setText(text);
+	textelem.alpha = 1;
+}
