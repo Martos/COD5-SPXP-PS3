@@ -10400,7 +10400,7 @@ xpBarHud(){
 	xpBar.aligny = "top";
 	xpBar.horzAlign = "fullscreen";
 	xpBar.vertAlign = "fullscreen";
-	xpBar setShader("gradient_fadein", 650, 4);
+	xpBar setShader("scorebar_fadein", 650, 4);
 	xpBar.color = (1, 0.8, 0.4);
 	xpBar.alpha = 0.65;
 }

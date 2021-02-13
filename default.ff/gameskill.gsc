@@ -2833,6 +2833,7 @@ auto_adjust_enemy_died( ai, amount, attacker, type, point )
 		
 	
 	aa_add_event( "aa_player_kills", 1 );
+	iprintln("+10");
 	
 	//prof_end( "auto_adjust_enemy_died" );
 }
