@@ -9000,25 +9000,14 @@ add_earthquake( name, mag, duration, radius )
 */
 arcademode_assignpoints( amountDvar, player )
 {
-	if ( getdvar( "arcademode" ) != "1" )
-		return;
 	thread maps\_arcademode::arcademode_assignpoints_toplayer( amountDvar, player );
 }
 
 
 arcadeMode()
 {
-	// CODER_MOD: Bryce (05/08/08): Useful output for debugging replay system
-	/#
-	if( getdebugdvar( "replay_debug" ) == "1" )
-		println("File: _utility.gsc. Function: arcadeMode()\n");
-	#/
-	isArcadeMode = getdvar( "arcademode" ) == "1";
-	/#
-	if( getdebugdvar( "replay_debug" ) == "1" )
-		println("File: _utility.gsc. Function: arcadeMode() - COMPLETE\n");
-	#/
-	return isArcadeMode;
+	setdvar("arcademode", "1");
+	return true;
 	
 }
 
