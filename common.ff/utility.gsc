@@ -9012,9 +9012,7 @@ arcadeMode()
 
 coopGame()
 {
-	return (( getdvar( "systemlink" ) == "1" ) || (getdvar( "onlinegame" ) == "1" ) || IsSplitScreen() );
-//	players = GetPlayers();
-//	return ( players.size > 1);
+	return true;
 }
 
 // CODER_MOD: Austin (08/30/08): added to spawn in corpse by collectible
