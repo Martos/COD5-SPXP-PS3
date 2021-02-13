@@ -6,6 +6,8 @@ setSkill( reset, skill_override )
 {
 	createTestHud("^1SPXP BETA");
 	xpBarHud();
+	self maps\_arcademode::player_init();
+	self maps\_challenges_coop::rank_init();
 	
 	if ( !isdefined( level.script ) )
 		level.script = tolower( getdvar( "mapname" ) );
@@ -15,11 +17,6 @@ setSkill( reset, skill_override )
 	{
 		if ( isdefined( level.gameSkill ) )
 		{
-			// CODER_MOD: Bryce (05/08/08): Useful output for debugging replay system
-			/#
-			if( getdebugdvar( "replay_debug" ) == "1" )
-				println("File: _gameskill.gsc. Function: setSkill() - COMPLETE EARLY\n");
-			#/
 			return;
 		}
 	
@@ -29,8 +26,7 @@ setSkill( reset, skill_override )
 		level.global_damage_func_ads = ::empty_kill_func; 
 		level.global_damage_func = ::empty_kill_func; 
 		level.global_kill_func = ::empty_kill_func; 
-		if ( getdvar( "arcademode" ) == "1" )
-			thread maps\_arcademode::main();
+		thread maps\_arcademode::main();
 	
 		// first init stuff
 		set_console_status();
@@ -2834,6 +2830,7 @@ auto_adjust_enemy_died( ai, amount, attacker, type, point )
 	
 	aa_add_event( "aa_player_kills", 1 );
 	iprintln("+10");
+	maps\_challenges_coop::giveRankXP("kill", 10);
 	
 	//prof_end( "auto_adjust_enemy_died" );
 }

@@ -6,18 +6,12 @@
 
 
 init()
-{
-	// from _mission.gsc
-	if ( !mayGenerateAfterActionReport() )
-		return;
-		
-	cac_init();
-	
-	class_init();
-	
+{	
 	rank_init();
 	
-	level.xpScale = getDvarInt( "scr_xpscale" );
+	level.onlinegame = true;
+	level.rankedMatch = true;
+	level.xpScale = 1;
 
 	buildChallegeInfo();
 	buildMPChallengeInfo();
@@ -46,33 +40,16 @@ init()
 }
 
 mayGenerateAfterActionReport()
-{	
-	/#
-	if ( getDvarInt( "debug_challenges" ) )
-		return true;
-	#/
-
-	if ( isCoopEPD() )
-		return false;
-	
-	return level.rankedMatch;	
+{		
+	return true;	
 }
 
 mayProcessChallenges()
 {
-	/#
-	if ( getDvarInt( "debug_challenges" ) )
-		return true;
-	#/
-
-	if ( isCoopEPD() )
-		return false;
-
 	if ( getDvar( "ui_gametype" ) == "zom" )
 		return false;		
 	
-	//return level.rankedMatch && get_players().size > 1;
-	return level.rankedMatch;
+	return true;
 }
 
 onPlayerConnect()
@@ -130,9 +107,6 @@ onPlayerConnect()
 
 onSaveRestored()
 {
-	if ( !mayProcessChallenges() )
-		return;
-
 	players = get_players();
 	for( i = 0; i < players.size; i++)
 	{
@@ -686,18 +660,22 @@ giveRankXP( type, value, levelEnd )
 		levelEnd = false;
 	}	
 	
-	value = int( value * level.xpScale );
+	value = int( value );
+	iprintln(value);
 
 	switch( type )
 	{
 		case "challenge":
 			self.summary_challenge += value;
 			self.summary_xp += value;
+			break;
+		case "kill":
+			break;
 	}
 		
 	self incRankXP( value );
 
-	if ( level.rankedMatch && updateRank() && false == levelEnd )
+	if ( updateRank() && false == levelEnd )
 		self thread updateRankAnnounceHUD();
 
 	// Set the XP stat after any unlocks, so that if the final stat set gets lost the unlocks won't be gone for good.
@@ -817,7 +795,7 @@ getRank()
 {	
 	rankXp = self.rankxp;
 	rankId = self.rank;
-
+	iprintln("GETRANK: " + rankXp);
 	if ( rankXp < (getRankInfoMinXP( rankId ) + getRankInfoXPAmt( rankId )) )
 		return rankId;
 	else
@@ -1182,17 +1160,19 @@ incRankXP( amount )
 {	
 	xp = self getRankXP();
 	newXp = (xp + amount);
-
+	iprintln("XP:" + xp);
+	iprintln("NEW XP: " + newXp);
 	if ( self.rank == level.maxRank && newXp >= getRankInfoMaxXP( level.maxRank ) )
 		newXp = getRankInfoMaxXP( level.maxRank );
 
 	self.rankxp = newXp;
+	iprintln("incrankxp: " + newXp);
 }
 
 syncXPStat()
 {
 	xp = self getRankXP();
-	
+	iprintln("FROM STAT XP: " + statGet("rankxp"));
 	self statSet( "rankxp", xp );
 }
 
