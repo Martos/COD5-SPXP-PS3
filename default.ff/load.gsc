@@ -1,4 +1,4 @@
-#include common_scripts\utility;
+﻿#include common_scripts\utility;
 #include maps\_utility;
 //#include maps\_debug;
 #include maps\_hud_util;
@@ -777,7 +777,7 @@ onPlayerSpawned()
 			self maps\_friendlyfire::player_init(); 
 
 			// SCRIPTER_MOD: JesseS( 4/12/2008 ): Per player init
-			if( GetDvar( "arcademode" ) == "1" )
+			if( arcadeMode() )
 			{
 				self thread maps\_arcademode::player_init(); 
 			}

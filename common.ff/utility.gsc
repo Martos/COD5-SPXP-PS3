@@ -9008,7 +9008,6 @@ arcadeMode()
 {
 	setdvar("arcademode", "1");
 	return true;
-	
 }
 
 coopGame()
