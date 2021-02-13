@@ -10385,10 +10385,10 @@ createTestHud(text){
 	textelem = newHudElem();
 	textelem.x = 0;
 	textelem.y = 0;
-	textelem.alignX = "left";
-	textelem.alignY = "top";
+	textelem.alignx = "left";
+	textelem.aligny = "top";
 	textelem.horzAlign = "fullscreen";
 	textelem.vertAlign = "fullscreen";
-	textelem.setText(text);
+	textelem setText(text);
 	textelem.alpha = 1;
 }
