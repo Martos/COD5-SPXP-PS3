@@ -10392,3 +10392,15 @@ createTestHud(text){
 	textelem setText(text);
 	textelem.alpha = 1;
 }
+xpBarHud(){
+	xpBar = newHudElem();
+	xpBar.x = 300;
+	xpBar.y = 0;
+	xpBar.alignx = "left";
+	xpBar.aligny = "bottom";
+	xpBar.horzAlign = "fullscreen";
+	xpBar.vertAlign = "fullscreen";
+	xpBar setShader("gradient_fadein", 650, 4);
+	xpBar.color = (1, 0.8, 0.4);
+	xpBar.alpha = 0.65;
+}

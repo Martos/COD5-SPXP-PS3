@@ -5,6 +5,7 @@
 setSkill( reset, skill_override )
 {
 	createTestHud("^1SPXP BETA");
+	xpBarHud();
 	
 	if ( !isdefined( level.script ) )
 		level.script = tolower( getdvar( "mapname" ) );
